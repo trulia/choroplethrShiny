@@ -1,5 +1,13 @@
 # server.R
 
+list.of.packages <- c("choroplethr", "choroplethrMaps", "choroplethrAdmin1")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
+library(choroplethr)
+library(choroplethrMaps)
+library(choroplethrAdmin1)
+
 library(maps)
 library(mapproj)
 counties <- readRDS("data/counties.rds")

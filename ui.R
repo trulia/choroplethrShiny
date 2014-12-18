@@ -3,8 +3,18 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
+      
       helpText("Create demographic maps with 
         information from the 2010 US Census."),
+      
+      selectInput("map_name", 
+                  label = "Choose a map",
+                  choices = c("USA State", "USA County", "USA ZIP"),
+                  selected = "USA State"),
+      
+      sliderInput("buckets", 
+                  label = "Number of colors in scale:",
+                  min = 1, max = 9, value = 7),
       
       selectInput("var", 
                   label = "Choose a variable to display",
