@@ -1,11 +1,10 @@
 shinyUI(fluidPage(
-  titlePanel("censusVis"),
+  titlePanel("choroplethr"),
   
   sidebarLayout(
     sidebarPanel(
       
-      helpText("Create demographic maps with 
-        information from the 2010 US Census."),
+      helpText("An interactive website based on the R package choroplethr"),
       
       selectInput("map_name", 
                   label = "Choose a map",
@@ -14,17 +13,7 @@ shinyUI(fluidPage(
       
       sliderInput("buckets", 
                   label = "Number of colors in scale:",
-                  min = 1, max = 9, value = 7),
-      
-      selectInput("var", 
-                  label = "Choose a variable to display",
-                  choices = c("Percent White", "Percent Black",
-                              "Percent Hispanic", "Percent Asian"),
-                  selected = "Percent White"),
-      
-      sliderInput("range", 
-                  label = "Range of interest:",
-                  min = 0, max = 100, value = c(0, 100))
+                  min = 1, max = 9, value = 7)
     ),
     
     mainPanel(plotOutput("map"))
