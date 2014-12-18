@@ -9,11 +9,11 @@ shinyUI(fluidPage(
       selectInput("map_name", 
                   label = "Choose a map",
                   choices = c("USA State", "USA County", "USA ZIP", "Country"),
-                  selected = "USA State")#,
+                  selected = "USA State"),
       
-#      sliderInput("buckets", 
-#                  label = "Number of colors in scale:",
-#                  min = 1, max = 9, value = 7)
+      sliderInput("num_buckets", 
+                  label = "Number of colors in scale:",
+                  min = 1, max = 9, value = 7)
     ),
     
     mainPanel(plotOutput("map"))
