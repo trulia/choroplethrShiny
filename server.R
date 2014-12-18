@@ -1,10 +1,11 @@
-list.of.packages <- c("choroplethr", "choroplethrMaps", "choroplethrAdmin1")
+list.of.packages <- c("choroplethr", "choroplethrMaps", "choroplethrAdmin1", "zipcode")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
 library(choroplethr)
 library(choroplethrMaps)
 library(choroplethrAdmin1)
+library(zipcode)
 
 shinyServer(
   function(input, output) 
