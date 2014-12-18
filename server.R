@@ -1,0 +1,28 @@
+# server.R
+
+list.of.packages <- c("choroplethr", "choroplethrMaps", "choroplethrAdmin1")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
+library(choroplethr)
+library(choroplethrMaps)
+library(choroplethrAdmin1)
+data(df_pop_state)
+data(df_pop_county)
+data(df_pop_zip)
+
+shinyServer(
+  function(input, output) {
+#    if (input$map_name == "USA State")
+#    {
+#      data(df_pop_state)
+#      output$map = state_choropleth(df_pop_state, "2012 State Population Estimates", "Population")
+#    } else if (input$map_name == "USA County") {
+#      data(df_pop_county)
+##      county_choropleth(df_pop_county, "2012 County Population Estimates", "Population")
+#    } else if (input$map_name == "USA ZIP") {
+#      data(df_pop_zip)
+#      county_choropleth(df_pop_zip, "2012 ZIP Population Estimates", "Population")
+#    }
+  }
+)
