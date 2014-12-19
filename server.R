@@ -15,25 +15,26 @@ shinyServer(
       if (input$map_name == "USA State") {
         output$map <- renderPlot({
           data(df_pop_state)
-          zoom = if(length(input$zoom) == 0) NULL else input$zoom
+          zoom = if(length(input$usa_zoom) == 0) NULL else input$usa_zoom
           state_choropleth(df_pop_state, "2012 State Population Estimates", "Population", num_buckets, zoom)
         })
       } else if (input$map_name == "USA County") {
         output$map <- renderPlot({
           data(df_pop_county)
-          zoom = if(length(input$zoom) == 0) NULL else input$zoom
+          zoom = if(length(input$usa_zoom) == 0) NULL else input$usa_zoom
           county_choropleth(df_pop_county, "2012 County Population Estimates", "Population", num_buckets, zoom)
         })
       } else if (input$map_name == "USA ZIP") {
         data(df_pop_zip)
-        zoom = if(length(input$zoom) == 0) NULL else input$zoom
+        zoom = if(length(input$usa_zoom) == 0) NULL else input$usa_zoom
         output$map <- renderPlot({
           zip_map(df_pop_zip, "2012 ZCTA (ZIP Code) Population Estimates", "Population", num_buckets, zoom)
         })
       } else if (input$map_name == "Country") {
         output$map <- renderPlot({
+          zoom = if(length(input$country_zoom) == 0) NULL else input$country_zoom
           data(df_pop_country)
-          country_choropleth(df_pop_country, "2012 Country Population Estimates", "Population", num_buckets)
+          country_choropleth(df_pop_country, "2012 Country Population Estimates", "Population", num_buckets, zoom)
         })
       }
     })

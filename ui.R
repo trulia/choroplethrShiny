@@ -1,7 +1,9 @@
 library(choroplethrMaps)
 
 data(state.regions, package="choroplethrMaps")
-zoom = state.regions$region
+usa.zoom = state.regions$region
+data(country.regions, package="choroplethrMaps")
+country.zoom = country.regions$region
 
 shinyUI(fluidPage(
   titlePanel("choroplethr"),
@@ -16,11 +18,23 @@ shinyUI(fluidPage(
                   choices = c("USA State", "USA County", "USA ZIP", "Country"),
                   selected = "USA State"),
 
-      selectInput("zoom",
-                  label = "Choose a zoom",
-                  choices = zoom,
-                  selected = "all",
-                  multiple = TRUE),
+      conditionalPanel(
+        condition = "input.map_name == 'USA State' || input.map_name == 'USA County' || input.map_name == 'USA ZIP'",
+        selectInput("usa_zoom", 
+                    label = "Choose a zoom",
+                    choices = usa.zoom,
+                    selected = "USA State",
+                    multiple = TRUE)
+      ),
+        
+      conditionalPanel(
+        condition = "input.map_name == 'Country'",
+        selectInput("country_zoom", 
+                    label = "Choose a zoom",
+                    choices = country.zoom,
+                    selected = "all",
+                    multiple = TRUE)
+      ),
       
       sliderInput("num_buckets", 
                   label = "Number of colors in scale:",
