@@ -10,8 +10,8 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      
-      helpText("An interactive website based on the R package choroplethr"),
+      helpText("An interactive website based on the R package ",
+               a("choroplethr", target="_blank", href="https://github.com/trulia/choroplethr")),
       
       selectInput("map_name", 
                   label = "Choose a map",
