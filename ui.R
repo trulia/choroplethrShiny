@@ -4,6 +4,9 @@ data(state.regions, package="choroplethrMaps")
 usa.zoom = state.regions$region
 data(country.regions, package="choroplethrMaps")
 country.zoom = country.regions$region
+data(admin1.regions, package="choroplethrAdmin1")
+admin1.zoom = get_admin1_countries()
+
 
 shinyUI(fluidPage(
   titlePanel("choroplethr"),
@@ -15,7 +18,7 @@ shinyUI(fluidPage(
       
       selectInput("map_name", 
                   label = "Choose a map",
-                  choices = c("USA State", "USA County", "USA ZIP", "Country"),
+                  choices = c("USA State", "USA County", "USA ZIP", "Country", "Admin1"),
                   selected = "USA State"),
 
       conditionalPanel(
@@ -34,6 +37,15 @@ shinyUI(fluidPage(
                     choices = country.zoom,
                     selected = "all",
                     multiple = TRUE)
+      ),
+        
+      conditionalPanel(
+        condition = "input.map_name == 'Admin1'",
+        selectInput("admin1_zoom", 
+                    label = "Choose a zoom",
+                    choices = admin1.zoom,
+                    selected = "japan"
+                    )
       ),
       
       sliderInput("num_buckets", 

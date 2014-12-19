@@ -35,6 +35,10 @@ shinyServer(
           zoom = if(length(input$country_zoom) == 0) NULL else input$country_zoom
           data(df_pop_country)
           country_choropleth(df_pop_country, "2012 Country Population Estimates", "Population", num_buckets, zoom)
+        }) 
+      } else if (input$map_name == "Admin1") {
+        output$map <- renderPlot({          
+          admin1_map(input$admin1_zoom)
         })
       }
     })
