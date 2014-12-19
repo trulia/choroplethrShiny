@@ -12,21 +12,23 @@ shinyServer(
   {
     observe({
       num_buckets = input$num_buckets
-      if (input$map_name == "USA State")
-      {
+      if (input$map_name == "USA State") {
         output$map <- renderPlot({
           data(df_pop_state)
-          state_choropleth(df_pop_state, "2012 State Population Estimates", "Population", num_buckets)
+          zoom = if(length(input$zoom) == 0) NULL else input$zoom
+          state_choropleth(df_pop_state, "2012 State Population Estimates", "Population", num_buckets, zoom)
         })
       } else if (input$map_name == "USA County") {
         output$map <- renderPlot({
           data(df_pop_county)
-          county_choropleth(df_pop_county, "2012 County Population Estimates", "Population", num_buckets)
+          zoom = if(length(input$zoom) == 0) NULL else input$zoom
+          county_choropleth(df_pop_county, "2012 County Population Estimates", "Population", num_buckets, zoom)
         })
       } else if (input$map_name == "USA ZIP") {
+        data(df_pop_zip)
+        zoom = if(length(input$zoom) == 0) NULL else input$zoom
         output$map <- renderPlot({
-          data(df_pop_zip)
-          zip_map(df_pop_zip, "2012 ZCTA (ZIP Code) Population Estimates", "Population", num_buckets)
+          zip_map(df_pop_zip, "2012 ZCTA (ZIP Code) Population Estimates", "Population", num_buckets, zoom)
         })
       } else if (input$map_name == "Country") {
         output$map <- renderPlot({
