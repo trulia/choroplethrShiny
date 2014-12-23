@@ -1,4 +1,5 @@
 library(choroplethrMaps)
+library(choroplethrAdmin1)
 
 data(state.regions, package="choroplethrMaps")
 usa.zoom = state.regions$region
@@ -44,8 +45,7 @@ shinyUI(fluidPage(
         selectInput("admin1_zoom", 
                     label = "Choose a zoom",
                     choices = admin1.zoom,
-                    selected = "japan"
-                    )
+                    selected = "japan")
       ),
       
       sliderInput("num_buckets", 
